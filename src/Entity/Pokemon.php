@@ -51,9 +51,15 @@ class Pokemon
      */
     private $types;
 
+    /**
+     * @ORM\OneToMany(targetEntity=PokemonAttack::class, mappedBy="pokemon", orphanRemoval=true)
+     */
+    private $attacks;
+
     public function __construct()
     {
         $this->types = new ArrayCollection();
+        $this->attacks = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -147,6 +153,36 @@ class Pokemon
     public function removeType(Type $type): self
     {
         $this->types->removeElement($type);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|PokemonAttack[]
+     */
+    public function getAttacks(): Collection
+    {
+        return $this->attacks;
+    }
+
+    public function addAttack(PokemonAttack $attack): self
+    {
+        if (!$this->attacks->contains($attack)) {
+            $this->attacks[] = $attack;
+            $attack->setPokemon($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAttack(PokemonAttack $attack): self
+    {
+        if ($this->attacks->removeElement($attack)) {
+            // set the owning side to null (unless already changed)
+            if ($attack->getPokemon() === $this) {
+                $attack->setPokemon(null);
+            }
+        }
 
         return $this;
     }
