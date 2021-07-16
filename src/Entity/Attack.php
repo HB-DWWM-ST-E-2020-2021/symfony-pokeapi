@@ -42,6 +42,12 @@ class Attack
      */
     private $power;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Type::class, inversedBy="attacks")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $type;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +109,18 @@ class Attack
     public function setPower(int $power): self
     {
         $this->power = $power;
+
+        return $this;
+    }
+
+    public function getType(): ?Type
+    {
+        return $this->type;
+    }
+
+    public function setType(?Type $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }
