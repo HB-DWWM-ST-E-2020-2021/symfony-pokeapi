@@ -162,7 +162,6 @@ class Attack
     {
         if (!$this->pokemons->contains($pokemon)) {
             $this->pokemons[] = $pokemon;
-            $pokemon->setAttack($this);
         }
 
         return $this;
@@ -170,12 +169,7 @@ class Attack
 
     public function removePokemon(PokemonAttack $pokemon): self
     {
-        if ($this->pokemons->removeElement($pokemon)) {
-            // set the owning side to null (unless already changed)
-            if ($pokemon->getAttack() === $this) {
-                $pokemon->setAttack(null);
-            }
-        }
+        $this->pokemons->removeElement($pokemon);
 
         return $this;
     }

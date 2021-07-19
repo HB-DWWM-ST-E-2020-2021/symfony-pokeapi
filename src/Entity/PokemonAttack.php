@@ -43,6 +43,8 @@ class PokemonAttack
     {
         $this->pokemon = $pokemon;
         $this->attack = $attack;
+        $pokemon->addAttack($this);
+        $attack->addPokemon($this);
     }
 
     public function getPokemon(): ?Pokemon

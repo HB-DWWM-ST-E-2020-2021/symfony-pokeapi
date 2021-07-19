@@ -70,7 +70,7 @@ class Pokemon
     private $types;
 
     /**
-     * @ORM\OneToMany(targetEntity=PokemonAttack::class, mappedBy="pokemon", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=PokemonAttack::class, mappedBy="pokemon", orphanRemoval=true, cascade={"persist", "remove"})
      * @MaxDepth(1)
      * @Groups({"pokemon:get"})
      */
@@ -184,7 +184,6 @@ class Pokemon
     {
         if (!$this->attacks->contains($attack)) {
             $this->attacks[] = $attack;
-            $attack->setPokemon($this);
         }
 
         return $this;
@@ -192,12 +191,7 @@ class Pokemon
 
     public function removeAttack(PokemonAttack $attack): self
     {
-        if ($this->attacks->removeElement($attack)) {
-            // set the owning side to null (unless already changed)
-            if ($attack->getPokemon() === $this) {
-                $attack->setPokemon(null);
-            }
-        }
+        $this->attacks->removeElement($attack);
 
         return $this;
     }
