@@ -17,8 +17,10 @@ use App\Pokedex\TypeApi;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * Class TypeCollectionProvider
+ * DataProvider are used to load data from source. By default, API platform use your database as source.
+ * In our case, we want to populate database with data from PokeAPI before using DB to generate JSON.
  *
+ * @see https://api-platform.com/docs/core/data-providers/
  * @author Benjamin Georgeault
  */
 class TypeCollectionProvider extends CollectionDataProvider

@@ -10,6 +10,11 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 
+/*
+ * Entity declared has @ApiResource. It will be available on /api/docs.
+ * The default group for normalization is "pokemon:get". You can set the string you want, but it has to be found in @Group
+ * annotation on entities.
+ */
 /**
  * @ApiResource(
  *     normalizationContext={

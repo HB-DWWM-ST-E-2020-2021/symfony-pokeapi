@@ -33,6 +33,13 @@ class TypeApi
 
     private EntityManagerInterface $em;
 
+    /**
+     * Use dependency injection to pass TypeRepository and EntityManager to our TypeApi object.
+     * @see https://symfony.com/doc/current/components/dependency_injection.html
+     *
+     * @param TypeRepository $typeRepository
+     * @param EntityManagerInterface $em
+     */
     public function __construct(TypeRepository $typeRepository, EntityManagerInterface $em)
     {
         // Build the HttpClient with base URL from https://pokeapi.co/.
@@ -104,10 +111,12 @@ class TypeApi
 
     public function convertPokeApiToType(array $data): Type
     {
+        // Try to find existing type by pokeapi id.
         $type = $this->typeRepository->findOneBy([
             'pokeapiId' => $data['id'],
         ]);
 
+        // If not exist, create it.
         if (null === $type) {
             $type = new Type();
             $type->setName($data['name']);
