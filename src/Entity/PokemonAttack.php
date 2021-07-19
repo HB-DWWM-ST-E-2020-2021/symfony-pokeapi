@@ -5,7 +5,6 @@ namespace App\Entity;
 use App\Repository\PokemonAttackRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 /**
  * This class has a composite primary key. 2 attributes (pokemon and attack) are used to create its primary key (@ORM\Id).
@@ -20,7 +19,6 @@ class PokemonAttack
      * @ORM\Id
      * @ORM\ManyToOne(targetEntity=Pokemon::class, inversedBy="attacks")
      * @ORM\JoinColumn(nullable=false)
-     * @MaxDepth(1)
      */
     private $pokemon;
 
@@ -28,7 +26,6 @@ class PokemonAttack
      * @ORM\Id
      * @ORM\ManyToOne(targetEntity=Attack::class, inversedBy="pokemons")
      * @ORM\JoinColumn(nullable=false)
-     * @MaxDepth(1)
      * @Groups({"pokemon:get"})
      */
     private $attack;

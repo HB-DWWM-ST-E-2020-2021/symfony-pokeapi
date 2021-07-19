@@ -8,7 +8,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 /*
  * Entity declared has @ApiResource. It will be available on /api/docs.
@@ -71,7 +70,6 @@ class Pokemon
 
     /**
      * @ORM\OneToMany(targetEntity=PokemonAttack::class, mappedBy="pokemon", orphanRemoval=true, cascade={"persist", "remove"})
-     * @MaxDepth(1)
      * @Groups({"pokemon:get"})
      */
     private $attacks;
