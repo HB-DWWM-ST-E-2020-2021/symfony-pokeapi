@@ -2,12 +2,19 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\TypeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
+ * @ApiResource(
+ *     normalizationContext={
+ *          "groups"={"type:get"}
+ *     }
+ * )
  * @ORM\Entity(repositoryClass=TypeRepository::class)
  */
 class Type
@@ -16,6 +23,7 @@ class Type
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"type:get", "pokemon:get", "attack:get"})
      */
     private $id;
 
@@ -26,6 +34,7 @@ class Type
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"type:get", "pokemon:get", "attack:get"})
      */
     private $name;
 
