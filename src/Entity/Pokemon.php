@@ -56,8 +56,9 @@ class Pokemon
      */
     private $attacks;
 
-    public function __construct()
+    public function __construct(int $id)
     {
+        $this->id = $id;
         $this->types = new ArrayCollection();
         $this->attacks = new ArrayCollection();
     }
@@ -65,12 +66,6 @@ class Pokemon
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function setId(int $id): self
-    {
-        $this->id = $id;
-        return $this;
     }
 
     public function getName(): ?string
