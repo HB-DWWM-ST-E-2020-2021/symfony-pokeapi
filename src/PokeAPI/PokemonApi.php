@@ -52,7 +52,7 @@ class PokemonApi extends AbstractApi
             $pokemon->setBaseExperience($data['base_experience'] ?? 0);
             $pokemon->setHeight($data['height'] ?? 0);
             $pokemon->setWeight($data['weight'] ?? 0);
-            $pokemon->setPokedexOrder($data['pokedex_order'] ?? 0);
+            $pokemon->setPokedexOrder($data['order'] ?? 0);
 
             foreach ($data['types'] as $type) {
                 $pokemon->addType(
