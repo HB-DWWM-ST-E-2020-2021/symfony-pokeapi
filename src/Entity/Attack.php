@@ -2,12 +2,14 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\AttackRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\RangeFilter;
 
 /**
  * @ApiResource(
@@ -17,6 +19,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *          "groups"={"attack:get"}
  *     }
  * )
+ * @ApiFilter(RangeFilter::class, properties={"pp", "accuracy"})
  * @ORM\Entity(repositoryClass=AttackRepository::class)
  */
 class Attack

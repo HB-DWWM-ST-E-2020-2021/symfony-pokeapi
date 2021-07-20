@@ -2,12 +2,15 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\PokemonRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\NumericFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 
 /*
  * Entity declared has @ApiResource. It will be available on /api/docs.
@@ -22,6 +25,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *          "groups"={"pokemon:get"}
  *     }
  * )
+ * @ApiFilter(NumericFilter::class, properties={"height"})
+ * @ApiFilter(SearchFilter::class, properties={"types.name"="partial"})
  * @ORM\Entity(repositoryClass=PokemonRepository::class)
  */
 class Pokemon
