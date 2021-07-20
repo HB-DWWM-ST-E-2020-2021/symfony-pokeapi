@@ -62,20 +62,13 @@ class PokemonApi extends AbstractApi
                 );
             }
 
-            $i = 0;
             foreach ($data['moves'] as $move) {
-                if (1 < $i) {
-                    // Limit to 2 moves only, too much data load at one time.
-                    break;
-                }
-
                 $attack = $this->attackRepository->findOneBy([
                     'name' => $move['move']['name'],
                 ]);
 
                 $pokemonAttack = new PokemonAttack($pokemon, $attack);
                 $pokemonAttack->setLevel($move['version_group_details'][0]['level_learned_at']);
-                $i++;
             }
         }
 
