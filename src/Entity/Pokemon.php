@@ -19,10 +19,16 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  */
 /**
  * @ApiResource(
- *     collectionOperations={"get"},
+ *     collectionOperations={
+ *          "get"={
+ *              "normalization_context"={
+ *                  "groups"={"pokemon:get_lite"}
+ *              }
+ *          }
+ *      },
  *     itemOperations={"get"},
  *     normalizationContext={
- *          "groups"={"pokemon:get"}
+ *          "groups"={"pokemon:get", "pokemon:get_lite"}
  *     }
  * )
  * @ApiFilter(NumericFilter::class, properties={"height"})
@@ -35,25 +41,25 @@ class Pokemon
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\Column(type="integer")
-     * @Groups({"pokemon:get"})
+     * @Groups({"pokemon:get", "pokemon:get_lite"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"pokemon:get"})
+     * @Groups({"pokemon:get", "pokemon:get_lite"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"pokemon:get"})
+     * @Groups({"pokemon:get", "pokemon:get_lite"})
      */
     private $height;
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"pokemon:get"})
+     * @Groups({"pokemon:get", "pokemon:get_lite"})
      */
     private $weight;
 
@@ -65,7 +71,7 @@ class Pokemon
 
     /**
      * @ORM\Column(type="integer")
-     * @Groups({"pokemon:get"})
+     * @Groups({"pokemon:get", "pokemon:get_lite"})
      */
     private $pokedexOrder;
 
