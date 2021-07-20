@@ -72,7 +72,7 @@ abstract class AbstractApi
                 throw new \RuntimeException('Error from Pokeapi.co on ' . $element['url']);
             }
 
-            $elements[] = $this->convertPokeApiToElement($elementResponse->toArray());
+            $elements[] = $elementResponse->toArray();
         }
 
         // Check if a next page exist.
@@ -98,7 +98,7 @@ abstract class AbstractApi
     /**
      * Implement this method to create your entity.
      */
-    abstract protected function convertPokeApiToElement(array $data): object;
+    abstract public function convertPokeApiToElement(array $data): object;
 
     /**
      * Check if you already have some data in your database for the given element.

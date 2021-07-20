@@ -19,8 +19,6 @@ use App\Repository\TypeRepository;
  * Class AttackApi
  *
  * @author Benjamin Georgeault
- *
- * @method Attack[] getCollection(int $offset = 0, int $limit = 50)
  */
 class AttackApi extends AbstractApi
 {
@@ -38,7 +36,7 @@ class AttackApi extends AbstractApi
      * @param array $data
      * @return Attack
      */
-    protected function convertPokeApiToElement(array $data): object
+    public function convertPokeApiToElement(array $data): object
     {
         // Try to find existing attack by pokeapi id.
         $attack = $this->attackRepository->findOneBy([

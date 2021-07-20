@@ -21,8 +21,6 @@ use App\Repository\TypeRepository;
  * Class PokemonApi
  *
  * @author Benjamin Georgeault
- *
- * @method Pokemon[]    getCollection(int $offset = 0, int $limit = 50)
  */
 class PokemonApi extends AbstractApi
 {
@@ -42,7 +40,7 @@ class PokemonApi extends AbstractApi
      * @param array $data
      * @return Pokemon
      */
-    protected function convertPokeApiToElement(array $data): object
+    public function convertPokeApiToElement(array $data): object
     {
         // Try to find existing pokemon by pokeapi id.
         $pokemon = $this->pokemonRepository->find($data['id']);
