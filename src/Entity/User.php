@@ -10,8 +10,22 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     attributes={
+ *          "security"="is_granted('ROLE_ADMIN')"
+ *     },
+ *     collectionOperations={
+ *          "get"={
+ *              "security"="is_granted('ROLE_ADMIN')"
+ *          },
+ *          "post"={
+ *              "security"="is_granted('ROLE_ADMIN')"
+ *          }
+ *     }
+ * )
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ *
+ * @see https://api-platform.com/docs/core/security/
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
